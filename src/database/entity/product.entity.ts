@@ -12,7 +12,7 @@ import { MainEntity } from './main.entity';
 
 @Entity({ name: 'Products' })
 export class ProductEntity extends MainEntity {
-  @Column({ length: 250 })
+  @Column({ length: 250, unique: true })
   cod: string;
 
   @Column({ unique: true })
