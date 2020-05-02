@@ -1,6 +1,3 @@
-export class ProductDTO {
-  readonly cod: string;
-  readonly price: string;
-  readonly amount: number;
-  readonly description: string;
-}
+import { ProductEntity } from 'src/database/entity/product.entity';
+
+export class ProductDTO extends ProductEntity {}

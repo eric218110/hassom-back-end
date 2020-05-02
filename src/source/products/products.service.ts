@@ -4,7 +4,6 @@ import { ProductDTO } from './dto/product.dto';
 import { ProductRepository } from './products.repository';
 import { Exception } from 'src/global/error/exception';
 import { ResponseInstance } from 'src/global/response';
-import { isNullOrUndefined, isNull } from 'util';
 
 @Injectable()
 export class ProductService implements IService<ProductDTO> {
@@ -30,7 +29,7 @@ export class ProductService implements IService<ProductDTO> {
       return await this.productRepository.save(createDTO);
     } catch (error) {
       throw new Exception().create(
-        `Not create registration = ${createDTO.cod}`,
+        `Not create registration = ${createDTO.barcode}`,
       );
     }
   }
