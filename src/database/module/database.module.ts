@@ -9,6 +9,8 @@ import { ItemCartEntity } from '../entity/itemCart.entity';
 import { AddressEntity } from '../entity/address.entity';
 import { PersonEntity } from '../entity/person.entity';
 import { CrerditCardEntity } from '../entity/creditCard.entity';
+import { MigrationEntity } from '../entity/migrations.entity';
+import { ImagesEntity } from '../entity/images.entitys';
 
 GlobalService.initEnv();
 
@@ -30,6 +32,8 @@ GlobalService.initEnv();
         AddressEntity,
         PersonEntity,
         ProductEntity,
+        MigrationEntity,
+        ImagesEntity,
       ],
       synchronize: true,
       logger: 'debug',

@@ -10,7 +10,7 @@
 import { Entity, Column } from 'typeorm';
 import { MainEntity } from './main.entity';
 
-@Entity({ name: 'bankSlip' })
+@Entity({ name: 'migrations' })
 export class MigrationEntity extends MainEntity {
   @Column({ length: 250, nullable: false })
   tableName: string;

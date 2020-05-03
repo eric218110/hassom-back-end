@@ -7,10 +7,18 @@
  *
  */
 
-import { Entity, Column, OneToOne, JoinColumn, ManyToOne } from 'typeorm';
+import {
+  Entity,
+  Column,
+  OneToOne,
+  JoinColumn,
+  ManyToOne,
+  OneToMany,
+} from 'typeorm';
 import { MainEntity } from './main.entity';
 import { CategoryEntity } from './category.entity';
 import { ItemCartEntity } from './itemCart.entity';
+import { ImagesEntity } from './images.entitys';
 
 @Entity({ name: 'products' })
 export class ProductEntity extends MainEntity {
@@ -52,4 +60,11 @@ export class ProductEntity extends MainEntity {
     itemCart => itemCart.products,
   )
   itemCart: ItemCartEntity;
+
+  @OneToMany(
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    type => ImagesEntity,
+    images => images.product,
+  )
+  images: ImagesEntity[];
 }
