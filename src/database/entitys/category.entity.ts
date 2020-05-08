@@ -7,7 +7,7 @@
  *
  */
 
-import { Entity, Column, OneToOne } from 'typeorm';
+import { Entity, Column, OneToMany } from 'typeorm';
 import { MainEntity } from './main';
 import { ProductEntity } from './product.entity';
 
@@ -19,10 +19,10 @@ export class CategoryEntity extends MainEntity {
   @Column({ nullable: false })
   description: string;
 
-  @OneToOne(
+  @OneToMany(
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     type => ProductEntity,
     (product: ProductEntity) => product.category,
   )
-  product: ProductEntity;
+  product: ProductEntity[];
 }

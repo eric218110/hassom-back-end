@@ -10,7 +10,6 @@
 import {
   Entity,
   Column,
-  OneToOne,
   JoinColumn,
   ManyToOne,
   OneToMany,
@@ -40,13 +39,13 @@ export class ProductEntity extends MainEntity {
   @Column({ nullable: false })
   initDate: string;
 
-  @Column({ unique: true })
+  @Column()
   lastSelling: Date;
 
-  @Column({ unique: true })
+  @Column()
   expirationDate: string;
 
-  @OneToOne(
+  @ManyToOne(
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     type => CategoryEntity,
     category => category.product,
