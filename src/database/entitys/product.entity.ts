@@ -7,13 +7,7 @@
  *
  */
 
-import {
-  Entity,
-  Column,
-  JoinColumn,
-  ManyToOne,
-  OneToMany,
-} from 'typeorm';
+import { Entity, Column, JoinColumn, ManyToOne, OneToMany } from 'typeorm';
 import { MainEntity } from './main';
 import { CategoryEntity } from './category.entity';
 import { ItemCartEntity } from './itemCart.entity';
@@ -23,6 +17,9 @@ import { ImagesEntity } from './images.entity';
 export class ProductEntity extends MainEntity {
   @Column({ unique: true, nullable: false })
   barcode: string;
+
+  @Column({ nullable: false })
+  name: string;
 
   @Column({ nullable: false })
   description: string;

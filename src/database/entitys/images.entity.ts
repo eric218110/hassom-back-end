@@ -32,6 +32,11 @@ export class ImagesEntity extends MainEntity {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     type => ProductEntity,
     product => product.images,
+    {
+      onDelete: 'CASCADE',
+      onUpdate: 'CASCADE',
+      nullable: false,
+    },
   )
   product: ProductEntity;
 }

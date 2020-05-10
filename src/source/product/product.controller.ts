@@ -21,6 +21,13 @@ import { ProductEntity } from 'src/database/entitys/product.entity';
 export class ProductController implements IController<ProductEntity> {
   constructor(private readonly productService: ProductService) {}
 
+  // ROTA QUE TRAGA TODOS OS PRODUTOS COM
+  // NAME
+  // DESCRIPTIONS
+  // IMAGES[]
+  // PRICE
+  // BARCODE
+
   @Get(':id')
   async index(@Param('id') id: string): Promise<ProductEntity> {
     return await this.productService.index(id);
