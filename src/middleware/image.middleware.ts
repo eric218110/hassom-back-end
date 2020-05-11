@@ -13,7 +13,6 @@ export class ImageMiddleware implements NestMiddleware {
     try {
       this.productRepository = getConnection().getRepository(ProductEntity);
       const product = await this.productRepository.findOne({ where: { id } });
-      console.log(product);
       if (
         product.id !== undefined ||
         product.id !== null ||

@@ -13,9 +13,3 @@ export enum COD_EXCEPTION {
   UPDATE = 463,
   DELETE = 464,
 }
-
-export enum MIMETYPES {
-  JPG = 'jpg',
-  JPEG = 'jpeg',
-  PNG = 'png',
-}

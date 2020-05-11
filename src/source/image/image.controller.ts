@@ -37,14 +37,14 @@ export class ImageController {
     }),
   )
   async uploadedFile(
-    @Param('product') productId: string,
-    @UploadedFile() file: IImage,
+    @Param('product') product: string,
+    @UploadedFile() image: IImage,
   ) {
-    return productId;
+    return await this.imageService.create(image, product);
   }
 
   @Get(':imgpath')
   getImageFile(@Param('imgpath') image: any, @Res() res: Response) {
-    this.imageService.getImageFile(path, image, res);
+    this.imageService.index(path, image, res);
   }
 }

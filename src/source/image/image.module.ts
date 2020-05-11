@@ -9,11 +9,12 @@ import { imageProviders } from './image.provider';
 import { ImageService } from './image.service';
 import { ImageController } from './image.controller';
 import { ImageMiddleware } from '../../middleware/image.middleware';
+import { productProviders } from '../product/product.provider';
 
 @Module({
   controllers: [ImageController],
   imports: [DatabaseModule],
-  providers: [...imageProviders, ImageService],
+  providers: [...imageProviders, ...productProviders, ImageService],
 })
 export class ImageModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {

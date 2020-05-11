@@ -14,16 +14,25 @@ import { ProductEntity } from './product.entity';
 @Entity({ name: 'images' })
 export class ImagesEntity extends MainEntity {
   @Column({ nullable: false })
-  url: string;
-
-  @Column({ length: 250, nullable: false })
-  alt: string;
+  fieldname: string;
 
   @Column({ nullable: false })
-  widht: number;
+  originalname: string;
 
   @Column({ nullable: false })
-  heith: number;
+  encoding: string;
+
+  @Column({ nullable: false })
+  mimetype: string;
+
+  @Column({ nullable: false })
+  destination: string;
+
+  @Column({ nullable: false })
+  filename: string;
+
+  @Column({ nullable: false })
+  path: string;
 
   @Column({ nullable: false })
   size: number;
