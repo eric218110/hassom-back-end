@@ -26,7 +26,7 @@ const path = resolve(__dirname, '..', '..', '..', 'uploads');
 export class ImageController {
   constructor(private readonly imageService: ImageService) {}
 
-  @Post('')
+  @Post(':product')
   @UseInterceptors(
     FileInterceptor('fileImage', {
       storage: diskStorage({
@@ -36,12 +36,11 @@ export class ImageController {
       fileFilter: imageFileFilter,
     }),
   )
-  async uploadedFile(@UploadedFile() file: IImage) {
-    const response = {
-      originalname: file.originalname,
-      filename: file.filename,
-    };
-    return response;
+  async uploadedFile(
+    @Param('product') productId: string,
+    @UploadedFile() file: IImage,
+  ) {
+    return productId;
   }
 
   @Get(':imgpath')
