@@ -9,43 +9,43 @@ import {
   Get,
   Param,
   Post,
-  Patch,
-  Body,
-  Delete,
+  UseInterceptors,
+  UploadedFile,
+  Res,
 } from '@nestjs/common';
 import { ImageService } from './image.service';
-import { IController } from '../../common/controller.interface';
-import { ImagesEntity } from 'src/database/entitys/images.entity';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { IImage } from 'src/common/image.interface';
+import { resolve } from 'path';
+import { diskStorage } from 'multer';
+import { editFileName, imageFileFilter } from '../../utils/images.ultils';
+import { Response } from 'express';
 
+const path = resolve(__dirname, '..', '..', '..', 'uploads');
 @Controller('image')
-export class ImageController implements IController<ImagesEntity> {
+export class ImageController {
   constructor(private readonly imageService: ImageService) {}
 
-  @Get(':id')
-  async index(@Param('id') id: string): Promise<ImagesEntity> {
-    return await this.imageService.index(id);
+  @Post('')
+  @UseInterceptors(
+    FileInterceptor('fileImage', {
+      storage: diskStorage({
+        destination: resolve(path),
+        filename: editFileName,
+      }),
+      fileFilter: imageFileFilter,
+    }),
+  )
+  async uploadedFile(@UploadedFile() file: IImage) {
+    const response = {
+      originalname: file.originalname,
+      filename: file.filename,
+    };
+    return response;
   }
 
-  @Get()
-  async show(): Promise<ImagesEntity[]> {
-    return await this.imageService.show();
-  }
-
-  @Post()
-  async create(@Body() createDTO: ImagesEntity): Promise<ImagesEntity> {
-    return await this.imageService.create(createDTO);
-  }
-
-  @Patch(':id')
-  async update(
-    @Param('id') id: string,
-    @Body() updateDTO: ImagesEntity,
-  ): Promise<{}> {
-    return await this.imageService.update(id, updateDTO);
-  }
-
-  @Delete(':id')
-  async delete(@Param('id') id: string): Promise<{}> {
-    return await this.imageService.delete(id);
+  @Get(':imgpath')
+  getImageFile(@Param('imgpath') image: any, @Res() res: Response) {
+    this.imageService.getImageFile(path, image, res);
   }
 }
